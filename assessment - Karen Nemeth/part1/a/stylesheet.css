@@ -1,0 +1,24 @@
+/*
+See index.html for instructions.
+*/
+table {
+  width:100%;
+}
+
+#one {
+  border: 4px solid blue;
+  float: left;
+}
+
+#two {
+  border: 4px solid grey;
+  float: right;
+}
+
+#three {
+  border: 4px solid orange;
+}
+
+.tablecell{
+  text-align:center;
+}

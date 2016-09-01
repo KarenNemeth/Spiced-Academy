@@ -1,0 +1,41 @@
+/*
+See index.html for instructions.
+*/
+
+p {
+  font-size: 16;
+  font-family: Tahoma;
+}
+
+li {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+li:first-child {
+  font-family: Verdana;
+  color: orange;
+}
+
+li:nth-child(2) {
+  font-family: Impact;
+  color: red;
+}
+
+li:nth-child(3) {
+  font-family: Georgia;
+  color: pink;
+}
+
+li:nth-child(4) {
+  font-family: Tahoma;
+}
+
+a {
+  font-style: underline;
+  color: blue;
+}
+
+a:visited {
+  color: purple;
+}
