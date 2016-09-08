@@ -22,6 +22,7 @@
 
 .cat:first-child {
     transform: translateX(0%);
+    opacity: 1;
 }
 
 #ready {
@@ -69,4 +70,8 @@
     border: 2px solid white;
     border-radius: 100%;
     background-color: transparent;
+}
+
+@media screen {
+
 }

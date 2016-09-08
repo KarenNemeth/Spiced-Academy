@@ -1,5 +1,5 @@
 (function(){
-    var slideIndex = 0;
+    var slideIndex;
     var image = document.getElementsByClassName('cat');
     var images = document.getElementById("carousel");
     var dot = document.getElementsByClassName('dot');
@@ -8,7 +8,6 @@
     var contextual;
     var setTime;
     var transitioning = false;
-    var fuckingFuck = 0;
 
     function carousel(){
 
@@ -24,15 +23,15 @@
 
         image[current].style.opacity = "1";
         image[current].id = "current";
-        if (fuckingFuck != 0) {
-            transitioning = true;
-        }
+        transitioning = true;
+        console.log(transitioning);
         if (image[previous].id !== "ready") {
             image[previous].id = "previous";
             images.addEventListener("transitionend",
                 function() {
                     image[previous].id = "ready";
                     transitioning = false;
+                    console.log(transitioning);
                 });
         }
 
@@ -41,10 +40,14 @@
         setTime = setTimeout(carousel, 5000);
 
         slideIndex++;
-        fuckingFuck++;
     }
 
-    carousel();
+    function startThisUp(){
+        slideIndex = 1;
+        setTimeout(carousel, 5000);
+    }
+
+    startThisUp();
 
     var dotArray = Array.prototype.slice.call(dot,0);
     var dots = document.getElementById("dots");
