@@ -64,8 +64,6 @@
                 contextualPrevious = 3;
             }
             clearTimeout(setTime);
-            // console.log(contextual);
-            // console.log(contextualPrevious);
             slideIndex = dotIndex;
 
             if (dotIndex === contextualPrevious) {
@@ -89,23 +87,51 @@
                     //I want to wait until contextualPrevious has finished moving off screen completely, the immediate move it to "ready", then call carousel which will set it to current and back to the main position.
             }
             else if (image[dotIndex] !== image[contextual]) {
-                console.log("you pressed button number " + dotIndex + " it is a hidden button");
-                for (var w=0; w<image.length; w++){
-                    image[w].id = "ready";
-                    dot[w].style.backgroundColor = "transparent";
+                console.log("you pressed " + dotIndex + ". It is not the current one.");
+                images.addEventListener("transitionend", pictureLoading);
+                function pictureLoading(e) {
+                    console.log(contextualPrevious + " has finished propogating");
+                    images.removeEventListener("transitionend", pictureLoading);
+                    for (var w=0; w<image.length; w++){
+                        image[w].id = "ready";
+                        dot[w].style.backgroundColor = "transparent";
+                    }
+                    image[contextual].id = "previous";
+                    dot[contextual].style.backgroundColor = "transparent";
+                    images.addEventListener("transitionend", ready);
+                    function ready(){
+                        console.log(contextual + "finished");
+                        image[contextual].id = "ready";
+                        images.removeEventListener("transitionend", ready);
+                    }
+                    e.stopPropogation;
+                    //slideIndex = dotIndex;
+                    carousel();
+
+                    // image[contextualPrevious].id = "ready";
+                    // if (image[contextualPrevious].id === "ready") {
+                    //     console.log("what the fuck");
+                    // }
+                    // images.removeEventListener("transitionend", pictureLoading);
+                    // carousel();
                 }
-                image[contextual].id = "previous";
-                dot[contextual].style.backgroundColor = "transparent";
-                function ready(){
-                    console.log(contextual + "finished");
-                    image[contextual].id = "ready";
-                    images.removeEventListener("transitionend", ready);
-                }
-                images.addEventListener("transitionend", ready);
-                e.stopPropogation;
-                //slideIndex = dotIndex;
-                carousel();
-                //works as long as you dont click on one that's currently moving off screen or click on ones too fast. need a condition outside these if else statements that notices +2 events in a 2 second period, makes an alert not affecting carousel at all
+
+                // for (var w=0; w<image.length; w++){
+                //     image[w].id = "ready";
+                //     dot[w].style.backgroundColor = "transparent";
+                // }
+                // image[contextual].id = "previous";
+                // dot[contextual].style.backgroundColor = "transparent";
+                // function ready(){
+                //     console.log(contextual + "finished");
+                //     image[contextual].id = "ready";
+                //     images.removeEventListener("transitionend", ready);
+                // }
+                // images.addEventListener("transitionend", ready);
+                // e.stopPropogation;
+                // //slideIndex = dotIndex;
+                // carousel();
+                // //works as long as you dont click on one that's currently moving off screen or click on ones too fast. need a condition outside these if else statements that notices +2 events in a 2 second period, makes an alert not affecting carousel at all
             }
             else {
                 console.log("this is current, nothing much to do!");
