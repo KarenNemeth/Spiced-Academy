@@ -66,7 +66,7 @@
             carousel();
         }
         else if (transitioning) {
-            console.log("Stop bothering me human.");
+            alert("Stop bothering me human!");
         }
     }
 
