@@ -3,12 +3,44 @@
 <head>
     <title>Ticker</title>
     <style text="text/css">
-
+    body {
+        margin: 0;
+    }
+    .ticker{
+       border-bottom: 2px solid black;
+       height: 50px;
+       padding: 0;
+       margin: 0;
+       overflow: hidden;
+    }
+    .container{
+       display: inline-flex;
+       height: 100%;
+       width: 120%;
+       flex-wrap: nowrap;
+       justify-content: flex-start;
+       align-items: center;
+    }
+    .link{
+       position: relative;
+       white-space: nowrap;
+       margin-right: 40px;
+    }
     </style>
-</head>
-<body>
-    <div id="ticker holder">
-    </div>
-<script src="ticker.js"></script>
-</body>
+    </head>
+    <body>
+       <div class="ticker">
+           <div class="container">
+               <a href="http://giphy.com/gifs/dog-crush-eyebrows-PbLM5yERlrQXe" class="link">Night Fever...</a>
+               <a href="http://imgur.com/6aged4x" class="link">Mondays...</a>
+               <a href="http://imgur.com/mcv8KA9" class="link">God Day Sir...I SAID GOOD DAY!!!</a>
+               <a href="http://imgur.com/Fvafs" class="link">Gorillaillailla</a>
+               <a href="http://imgur.com/nJdP4" class="link">Harry Otter and the magic cups!</a>
+               <a href="http://imgur.com/ErVat" class="link">Baby Elephant gets kicked in the nuts</a>
+               <a href="http://imgur.com/jfp3XE5" class="link">Nature's Mistake</a>
+               <a href="http://giphy.com/gifs/girl-candy-cotton-B2C6gqlterWLe" class="link">Cotton Candy Kid</a>
+           </div>
+       </div>
+   <script src="ticker.js"></script>
+   </body>
 </html>
