@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Ticker</title>
-    <style text="text/css">
-    body {
-        margin: 0;
-    }
-    .ticker{
-       border-bottom: 2px solid black;
-       height: 50px;
-       padding: 0;
-       margin: 0;
-       overflow: hidden;
-    }
-    .container{
-       display: inline-flex;
-       height: 100%;
-       width: 120%;
-       flex-wrap: nowrap;
-       justify-content: flex-start;
-       align-items: center;
-    }
-    .link{
-       position: relative;
-       white-space: nowrap;
-       margin-right: 40px;
-    }
-    </style>
+    <head>
+        <title>Ticker</title>
+        <style text="text/css">
+            body {
+                margin: 0;
+            }
+
+            .ticker{
+               border-bottom: 2px solid black;
+               height: 3em;
+               padding: 0;
+               margin: 0;
+               position: relative;
+            }
+
+            .container{
+               position: relative;
+               height: 100%;
+               left: 100%;
+               white-space: nowrap;
+               padding-top: 1em;
+               padding-bottom: 1em;
+            }
+
+            .link {
+                font-size: 1em;
+                display: inline;
+                height: 100%;
+                position: relative;
+                padding-right: 3em;
+                margin: 0;
+                padding-left: 0;
+                color: black;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            .link:hover {
+                color: blue;
+                text-decoration: underline;
+            }
+
+        </style>
     </head>
     <body>
        <div class="ticker">
