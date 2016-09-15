@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Validator</title>
+    <style text="text/css">
+    #textDiv {
+        width: 100%;
+        height: 60%;
+    }
+    #textArea{
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        display: block;
+    }
+    #otherDiv {
+        width: 100%;
+        margin-top: 1em;
+        display: block;
+        text-align: center;
+    }
+    #buttonDiv{
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
+    #message {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    </style>
+</head>
+<body>
+    <div>
+        <div id="textDiv">
+            <textarea id="textArea" placeholder="Give me some JSON!" rows="30"></textarea>
+        </div>
+        <div id="otherDiv">
+            <div id="buttonDiv"><button id="button">Let's check if it's valid!</button></div>
+            <h3 id="message"></h3>
+        </div>
+    </div>
+<script src="JSON-Validator.js"></script>
+</body>
+</html>
