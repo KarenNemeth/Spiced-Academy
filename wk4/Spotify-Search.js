@@ -4,6 +4,7 @@ $(document).ready(function() {
     var encodedSearch;
     var spotify_url;
     var nextList;
+    var setTime;
 
     $('#searchButton').first().on("click", function(){
         $("#message").empty();
@@ -24,7 +25,6 @@ $(document).ready(function() {
             success: function load(data) {
                 $.each(data, function(key, value){
                     console.log(data);
-                    console.log(spotify_url);
                     $.each(this.items, function(id, val){
                         var li = $("<li>").attr('id', 'resultItem').appendTo('#results');
                         if (val.images[0] == undefined) {
@@ -38,19 +38,35 @@ $(document).ready(function() {
                         });
                     });
                     nextList = value.next;
-                    console.log(nextList);
                     if (nextList != null) {
-                        $("<button>").html("More Results").attr("id", "moreResults").appendTo('#resultsContainer').on("click", function(){
-                            $('#moreResults').remove();
-                            console.log(nextList);
+                        function callMore() {
                             $.ajax({
                                 url: nextList,
                                 method: 'GET',
                                 success: load,
                                 error: function() {
-                                    console.log(spotify_url + " could not be found");}
+                                    console.log(spotify_url + " could not be found");
+                                }
                             });
-                        });
+                        }
+                        if (location.search == "?scroll=infinite") {
+                            setTime = setInterval(function (){
+                                var heights = ($(document).height() - $(window).height() - 250);
+                                if ($(document).scrollTop() > heights) {
+                                    callMore();
+                                }
+                            }, 250);
+                        } else {
+                            $("<button>").html("More Results").attr("id", "moreResults").appendTo('#resultsContainer').on("click", function(){
+                                $('#moreResults').remove();
+                                callMore();
+                            });
+                        }
+                    }
+                    if (nextList == null) {
+                        clearTimeout(setTime);
+                        console.log("it's null");
+                        return;
                     }
                 });
             },

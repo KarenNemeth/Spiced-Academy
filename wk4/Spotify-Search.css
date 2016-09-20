@@ -10,7 +10,6 @@
 }
 
 #message{
-    margin-top: 2em;
     text-align: center;
     width: 100%;
 }
@@ -22,6 +21,7 @@
     margin-top: 2em;
     height: auto;
     overflow-x: hidden;
+    text-align: center;
 }
 
 #results {
@@ -32,6 +32,7 @@
     display: inline-block;
     border: 2px solid red;
     padding: 0;
+    margin: 0;
 }
 
 #resultItem{
@@ -50,5 +51,10 @@
 }
 
 #name {
+    margin: 1em;
+}
+
+#moreResults {
+    padding-top: 0;
     margin: 1em;
 }
