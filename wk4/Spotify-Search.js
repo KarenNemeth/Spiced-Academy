@@ -11,6 +11,7 @@ $(document).ready(function() {
         $("#results").empty();
         $('#moreResults').remove();
 
+        $("#resultsContainer").css({"display": "block"});
         searchTerm = $('#searchTerm').val();
         type = $('#select').val();
         console.log(searchTerm);
@@ -28,10 +29,11 @@ $(document).ready(function() {
                     $.each(this.items, function(id, val){
                         var li = $("<li>").attr('id', 'resultItem').appendTo('#results');
                         if (val.images[0] == undefined) {
-                            $("<img>").attr('id', 'picture').attr('src', 'record.jpg').appendTo(li);
+                            img = $("<img>").attr('id', 'picture').attr('src', 'record.jpg').appendTo(li);
                         } else {
-                            $("<img>").attr('id', 'picture').attr('src', val.images[0].url).appendTo(li);
+                            img = $("<img>").attr('id', 'picture').attr('src', val.images[0].url).appendTo(li);
                         }
+                        $("<div>").attr('id', 'transparency').appendTo(li);
                         $("<div>").html(val.name).attr('id', 'name').appendTo(li);
                         $(li).on("click", function(){
                             window.location = val.external_urls.spotify;
