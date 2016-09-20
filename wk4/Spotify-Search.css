@@ -1,0 +1,54 @@
+#header{
+    width: 100%;
+    text-align: center;
+}
+
+#searchTerm{
+    background: white url("search.png") left no-repeat;
+    background-size: 15%;
+    text-indent: 20px;
+}
+
+#message{
+    margin-top: 2em;
+    text-align: center;
+    width: 100%;
+}
+
+#resultsContainer{
+    width: 100%;
+    position: relative;
+    border: 2px solid black;
+    margin-top: 2em;
+    height: auto;
+    overflow-x: hidden;
+}
+
+#results {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    border: 2px solid red;
+    padding: 0;
+}
+
+#resultItem{
+    width: 100%;
+    height: 100px;
+    border: 2px solid black;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#picture {
+    width: 75px;
+    height: 75px;
+    margin: 1em;
+}
+
+#name {
+    margin: 1em;
+}
