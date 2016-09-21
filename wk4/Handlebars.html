@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Handlebars Exercise</title>
+    <style text="text/css">
+        #container{
+            width: 100%;
+            height: 100%;
+            min-width: 640px;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: space-around;
+        }
+        #selection{
+            width: 30%;
+            word-wrap: normal;
+            padding: 0;
+            text-align: center;
+        }
+        h3{
+            width: 100%;
+            height: auto;
+        }
+        img{
+            width: 150px;
+            height: 200px;
+            margin-left: 25px;
+            margin-right: 25px;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id ="container">
+        <p id="waiting">Waiting</p>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script id="information" type="text/handlebars">
+    <h3>{{name}}</h3>
+    <img src="{{photo}}"></img>
+    <p><b>Born:</b> {{born}}, <b>Died:</b> {{died}}</p>
+    <p><b>Most famous publications were:</b> {{selectedWritings}}</p>
+    <p><b>Most famous quote:</b> {{quote}}</p>
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script text="text/javascript">
+    $(document).ready(function() {
+        var templates = document.querySelectorAll('script[type="text/handlebars"]');
+
+        Handlebars.templates = Handlebars.templates || {};
+        Handlebars.partials = Handlebars.templates;
+
+        Array.prototype.slice.call(templates).forEach(function(script) {
+            Handlebars.templates[script.id] = Handlebars.compile(script.innerHTML);
+        });
+
+        $.getJSON("authors.json", function(data){
+            $.each(data.authors, function(key, val){
+                $("#waiting").hide();
+                var selection = $("<div>").attr("id", "selection").appendTo('#container');
+                var info = Handlebars.templates.information({
+                    name: val.name,
+                    photo: val.photo,
+                    born: val.born,
+                    died: val.died,
+                    selectedWritings: val.selectedWritings[0] + ", " + val.selectedWritings[1] + ", " + val.selectedWritings[2],
+                    quote: val.quote
+                })
+                selection.html(info);
+            })
+        })
+    });
+</script>
+</body>
+</html>
