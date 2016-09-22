@@ -33,18 +33,17 @@
 <body>
     <div id ="container">
         <p id="waiting">Waiting</p>
+        <script id="information" type="text/handlebars">
+            <h3>{{name}}</h3>
+            <img src="{{photo}}"></img>
+            <p><b>Born:</b> {{born}}, <b>Died:</b> {{died}}</p>
+            <p><b>Most famous publications were:</b> {{selectedWritings}}</p>
+            <p><b>Most famous quote:</b> {{quote}}</p>
+        </script>
     </div>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-<script id="information" type="text/handlebars">
-    <h3>{{name}}</h3>
-    <img src="{{photo}}"></img>
-    <p><b>Born:</b> {{born}}, <b>Died:</b> {{died}}</p>
-    <p><b>Most famous publications were:</b> {{selectedWritings}}</p>
-    <p><b>Most famous quote:</b> {{quote}}</p>
-</script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script text="text/javascript">
     $(document).ready(function() {

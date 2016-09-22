@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resizable Five Points</title>
+    <style text="text/css">
+        #resizableContainer{
+            width: 300px;
+            height: 450px;
+            margin: none;
+            position: absolute;
+            overflow: hidden;
+            border: 2px solid black;
+        }
+        #top{
+            background-image: url(TimesSquareThen.jpg);
+            background-size: cover;
+            position: absolute;
+            z-index: 3;
+            width: 300px;
+            height: 250px;
+            min-height: 10px;
+            max-height: 450px;
+            overflow: auto;
+        }
+        #pane{
+            top: 240px;
+            width: 100%;
+            z-index: 10;
+            height: 20px;
+            position: absolute;
+            background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/hsizegrip.png) center center no-repeat #535353;
+            cursor: row-resize;
+        }
+        #bottom{
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-image: url(TimesSquareNow.jpg);
+            background-size: cover;
+            width: 300px;
+            height: 450px;
+            overflow: auto;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div id="resizableContainer">
+        <div id="top"></div>
+        <div id="pane"></div>
+        <div id="bottom"></div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script text="text/javascript">
+    $(document).ready(function() {
+        var desiredHeight;
+        var clickHeight;
+        var paneHeight;
+        var moveIt;
+
+
+        $("#pane").mousedown(function(e){
+            console.log(e.offsetY);
+            clickHeight = e.offsetY;
+
+            function moveIt(){
+                paneHeight = desiredHeight - clickHeight;
+                if (desiredHeight < 440 && desiredHeight > 20){
+                    $("#pane").css({
+                        top: paneHeight
+                    });
+                    $("#top").css({
+                        height: desiredHeight
+                    });
+                };
+            }
+            $("#resizableContainer").mousemove(function(e){
+                    desiredHeight = e.clientY;
+                    moveIt();
+            });
+            $(window).mouseup(function(){
+                $("#resizableContainer").off("mousemove");
+            });
+            $("#resizableContainer").mouseenter(function(){
+                $("#resizableContainer").mousemove(function(e){
+                        desiredHeight = e.clientY;
+                        moveIt();
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>
