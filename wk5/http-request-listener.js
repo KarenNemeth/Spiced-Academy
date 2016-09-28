@@ -31,8 +31,14 @@ http.createServer(function(request, response){
         response.setHeader('Content-Type', 'text/html');
         response.end();
     } else if (method == "GET") {
-        response.setHeader('Content-Type', 'text/html');
-        response.end("<!doctype html><html><title>Hello World!</title><p>I am Node!</p></html>");
+        if (url == "/requests.txt"){
+            response.setHeader('Content-Type', 'text/plain');
+            var stream = fs.createReadStream('requests.txt');
+            stream.pipe(response);
+        } else {
+            response.setHeader('Content-Type', 'text/html');
+            response.end("<!doctype html><html><title>Hello World!</title><p>I am Node!</p></html>");
+        }
     } else if (method == "POST") {
         console.log(chalk.blue("Request Body:" + body));
         response.writeHead(302, {
@@ -49,14 +55,11 @@ http.createServer(function(request, response){
         "Timestamp": Date(),
         "Request Method": method,
         "Request URL": url,
-        "User-Agent Request Header": headers
+        "User-Agent Request Header": headers["user-agent"]
     };
     var logInfoString = JSON.stringify(logInformation, null, 4);
     fs.appendFile('requests.txt', logInfoString, (err) => {
         if (err) console.error(error("Writing File Error: " + err));
         console.log("Log entry created");
     });
-
-
-
 }).listen(8080);
