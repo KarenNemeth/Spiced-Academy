@@ -12,7 +12,6 @@ function describeURL(){
     console.log("The pathname is " + URL.pathname);
     console.log("The query is " + URL.query);
     var queries = querystring.parse(URL.query);
-    console.log(queries);
     for (var prop in queries){
         console.log("The value of the " + prop + " parameter is " + queries[prop]);
     }
