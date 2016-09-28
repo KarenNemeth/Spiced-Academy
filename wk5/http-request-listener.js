@@ -13,14 +13,15 @@ http.createServer(function(request, response){
     console.log(property("Method:") + method);
     console.log(property("URL:") + url);
 
-    var body = [];
-    request.on('error', function(err){
-        console.error(error("request error:" + err));
-    }).on('data',function(chunk){
-        body.push(chunk);
-    }).on('end',function(){
-        body = Buffer.concat(body).toString();
-    });
+    //Body for pedagogical purposes
+    // var body = [];
+    // request.on('error', function(err){
+    //     console.error(error("request error:" + err));
+    // }).on('data',function(chunk){
+    //     body.push(chunk);
+    // }).on('end',function(){
+    //     body = Buffer.concat(body).toString();
+    // });
 
     //Responses
     response.on('error', function(err){
