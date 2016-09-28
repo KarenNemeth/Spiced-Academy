@@ -1,0 +1,28 @@
+{"Timestamp":"Wed Sep 28 2016 12:29:16 GMT+0200 (CEST)","Request Method":"PUT","Request URL":"/","User-Agent Request Header":{"cache-control":"no-cache","postman-token":"0c04b3b6-6216-4ac0-aa44-fb4c2845f84f","user-agent":"PostmanRuntime/2.5.2","accept":"*/*","host":"localhost:8080","accept-encoding":"gzip, deflate","content-length":"0","connection":"keep-alive"}}{
+    "Timestamp": "Wed Sep 28 2016 12:29:54 GMT+0200 (CEST)",
+    "Request Method": "PUT",
+    "Request URL": "/",
+    "User-Agent Request Header": {
+        "cache-control": "no-cache",
+        "postman-token": "41593d98-d1a0-49e7-9afd-3d47234f1edd",
+        "user-agent": "PostmanRuntime/2.5.2",
+        "accept": "*/*",
+        "host": "localhost:8080",
+        "accept-encoding": "gzip, deflate",
+        "content-length": "0",
+        "connection": "keep-alive"
+    }
+}{
+    "Timestamp": "Wed Sep 28 2016 12:29:58 GMT+0200 (CEST)",
+    "Request Method": "GET",
+    "Request URL": "/",
+    "User-Agent Request Header": {
+        "cache-control": "no-cache",
+        "postman-token": "0dc8753e-1fef-48b0-8f2e-922dcee82b4f",
+        "user-agent": "PostmanRuntime/2.5.2",
+        "accept": "*/*",
+        "host": "localhost:8080",
+        "accept-encoding": "gzip, deflate",
+        "connection": "keep-alive"
+    }
+}

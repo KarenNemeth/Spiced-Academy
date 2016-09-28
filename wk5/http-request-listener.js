@@ -1,7 +1,8 @@
 const http = require('http');
+const fs = require("fs");
 const chalk = require('chalk');
-var error = chalk.bold.red;
-var property = chalk.blue;
+var error = chalk.bold.magenta;
+var property = chalk.cyan;
 
 http.createServer(function(request, response){
     //Requests
@@ -33,7 +34,7 @@ http.createServer(function(request, response){
         response.setHeader('Content-Type', 'text/html');
         response.end("<!doctype html><html><title>Hello World!</title><p>I am Node!</p></html>");
     } else if (method == "POST") {
-        console.log(property("Request Body:" + body));
+        console.log(chalk.blue("Request Body:" + body));
         response.writeHead(302, {
             'Location': '/'
         });
@@ -43,17 +44,19 @@ http.createServer(function(request, response){
         response.end();
     }
 
-    // response.statusCode = 200;
-    // response.setHeader('Content-Type', 'application/json');
-    //
-    // var responseBody = {
-    //     headers: headers,
-    //     method: method,
-    //     url: url,
-    //     body: body
-    // };
-    //
-    // response.write(JSON.stringify(responseBody));
-    // response.end();
+    //Log
+    var logInformation = {
+        "Timestamp": Date(),
+        "Request Method": method,
+        "Request URL": url,
+        "User-Agent Request Header": headers
+    };
+    var logInfoString = JSON.stringify(logInformation, null, 4);
+    fs.appendFile('requests.txt', logInfoString, (err) => {
+        if (err) console.error(error("Writing File Error: " + err));
+        console.log("Log entry created");
+    });
+
+
 
 }).listen(8080);
