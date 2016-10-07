@@ -1,9 +1,24 @@
+const https = require('https');
+const twitterCredentials = require('./credentials.json');
+const key = twitterCredentials.key;
+const secret = twitterCredentials.secret;
+const code = key.concat(":", secret);
+const code64 = new Buffer(code).toString('base64');
 const chalk = require('chalk');
 var error = chalk.bold.magenta;
 var note = chalk.green;
-var property = chalk.cyan;
-const https = require('https');
 var token;
+
+const tokenOptions = {
+    host: "api.twitter.com",
+    path: "/oauth2/token",
+    method: "POST",
+    headers: {
+        Authorization: "Basic " + code64,
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        "Content-Length": 29
+    }
+};
 
 function getBearerToken(data){
     return new Promise(function (resolve, reject){
@@ -35,7 +50,6 @@ function getTweets(resg){
         callsToTwitter.push(callForTweets(sources[i]));
     }
     Promise.all(callsToTwitter).then(function(tweetsToDisplay){
-        console.log(tweetsToDisplay);//Flatten this
         console.log("Done");
         var concatTweets = [].concat.apply([],tweetsToDisplay);
         concatTweets.sort(function(a,b){
@@ -118,6 +132,7 @@ function compileFeed(entry) {
 }
 
 module.exports = {
+    "tokenOptions": tokenOptions,
     "getBearerToken": getBearerToken,
     "getTweets": getTweets
 };
