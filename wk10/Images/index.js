@@ -55,40 +55,46 @@ app.post('/upload', uploader.single('file'), function(req, res) {
 app.get('/getimg', function(req,res){
     res.render('getimg');
 });
-app.post('/getimg', function(req,res,err){
+app.post('/getimg', function(req,res){
     var url = req.body.imgurl;
-    var options = {
-        url: url,
-        method: "HEAD"
-    };
-    // if (err) {
-    //     console.log(util.inspect(err, {showHidden: false, depth: null}));
-    //     console.log(util.inspect(options, {showHidden: false, depth: null}));
-    //     // return;
-    // }
     var file = fs.createWriteStream('./uploads/img.png');
-    file.on('open', function(){
-        https.get(url, function(headRes){
-            console.log(util.inspect(url, {showHidden: false, depth: null}));
-            var maxSize = 2097152;
-            var size = headRes.headers['content-length'];
-            if (size > maxSize) {
-                console.log('Resource size exceeds limit (' + size + ')');
-            } else {
-                console.log("well...");
-                res.on('data', function(data){
-                    size += data.length;
+    function getImage(url){
+        return new Promise(function(resolve,reject){
+            file.on('open', function(){
+                https.get(url, function(headRes){
+                    console.log(util.inspect(url, {showHidden: false, depth: null}));
+                    var maxSize = 2097152;
+                    var size = headRes.headers['content-length'];
                     if (size > maxSize) {
-                        console.log('Resource stream exceeded limit (' + size + ')');
-                        res.abort();
-                        fs.unlink(file);
+                        console.log('Resource size exceeds limit (' + size + ')');
+                        reject('Resource size exceeds limit (' + size + ')');
+                    } else {
+                        console.log("well...");
+                        headRes.pipe(file);
+                        file.on('finish', function(){
+                            file.close();
+                            resolve();
+                        }).on('error', function(err){
+                            console.log(err);
+                            reject(err);
+                        });
                     }
-                }).pipe(file).on('error', function(err){
+                }).on('error', function(err){
                     console.log(err);
+                    reject(err);
                 });
-            }
-        }).on('error', function(err){
-            console.log(err);
+            });
+        });
+    }
+    getImage(url).then(function(){
+        console.log('Success');
+        res.render('getimg', {
+            'img': 'img.png'
+        });
+    }).catch(function(err){
+        console.log("Caught");
+        res.render('getimg', {
+            'err': err
         });
     });
 });

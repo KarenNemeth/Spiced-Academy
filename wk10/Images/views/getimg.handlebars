@@ -2,4 +2,9 @@
     <input type="text" name="imgurl">
     <input type="submit">
 </form>
-<img id="image"></img>
+{{#if err}}
+    <p>{{err}}</p>
+{{/if}}
+{{#if img}}
+    <img id="image" src='img.png'></img>
+{{/if}}
